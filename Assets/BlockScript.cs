@@ -22,7 +22,7 @@ public class BlockScript : MonoBehaviour
         TextMeshProUGUI text;
         text=blockText.GetComponent<TextMeshProUGUI>();
         int blockcnt = CountBlocks();
-        text.text= $"BLOCKS:{blockcnt}";
+        text.text= $"BLOCKS:{blockcnt-1}";
         if (CountBlocks()==1){
             SceneManager.LoadScene("GameClear");
         };   
