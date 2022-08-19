@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 using TMPro;
 public class BlockScript : MonoBehaviour
 {
+    [SerializeField]
+    private int hp;
     private GameObject blockText;
     // Start is called before the first frame update
     private void Start(){
@@ -18,7 +20,11 @@ public class BlockScript : MonoBehaviour
         return blocks.Length;
     }
     private void OnCollisionEnter(Collision collection){
-        Destroy(this.gameObject);
+        hp--;
+        if (hp == 0)
+        {
+            Destroy(this.gameObject);
+        }
         TextMeshProUGUI text;
         text=blockText.GetComponent<TextMeshProUGUI>();
         int blockcnt = CountBlocks();
