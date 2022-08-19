@@ -24,13 +24,16 @@ public class BlockScript : MonoBehaviour
         if (hp == 0)
         {
             Destroy(this.gameObject);
-        }
-        TextMeshProUGUI text;
-        text=blockText.GetComponent<TextMeshProUGUI>();
-        int blockcnt = CountBlocks();
-        text.text= $"BLOCKS:{blockcnt-1}";
-        if (CountBlocks()==1){
-            SceneManager.LoadScene("GameClear");
-        };   
+            TextMeshProUGUI text;
+            text = blockText.GetComponent<TextMeshProUGUI>();
+            //なんかDestroyのタイミングがうまく合わないのでDestroyが起きたときにだけカウントする
+            int blockcnt = CountBlocks();
+            Debug.Log(CountBlocks());
+            text.text = $"BLOCKS:{CountBlocks()-1}";
+            if (CountBlocks() == 1)
+            {
+                SceneManager.LoadScene("GameClear");
+            };
+        }   
     }
 }
