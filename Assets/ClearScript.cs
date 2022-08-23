@@ -18,6 +18,7 @@ public class ClearScript : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
+            ScoreManager.Init_Score();
             SceneManager.LoadScene("BreakBlock");
         }
     }
