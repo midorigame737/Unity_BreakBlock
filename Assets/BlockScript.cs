@@ -7,10 +7,14 @@ public class BlockScript : MonoBehaviour
 {
     [SerializeField]
     private int hp;
+    [SerializeField]
+    private int score;
     private GameObject blockText;
+    private GameObject scoreText;
     // Start is called before the first frame update
     private void Start(){
         blockText=GameObject.Find("BlocksTxt");
+        scoreText = GameObject.Find("ScoreTxt");
     }
     private int CountBlocks(){
         GameObject[] blocks;
@@ -24,12 +28,12 @@ public class BlockScript : MonoBehaviour
         if (hp == 0)
         {
             Destroy(this.gameObject);
-            TextMeshProUGUI text;
-            text = blockText.GetComponent<TextMeshProUGUI>();
             //なんかDestroyのタイミングがうまく合わないのでDestroyが起きたときにだけカウントする
             int blockcnt = CountBlocks();
             Debug.Log(CountBlocks());
-            text.text = $"BLOCKS:{CountBlocks()-1}";
+            ScoreManager.AddScore(score);
+            scoreText.GetComponent<TextMeshProUGUI>().text = $"SOCRE:{ScoreManager.GetScore()}";
+            blockText.GetComponent<TextMeshProUGUI>().text = $"BLOCKS:{CountBlocks()-1}";
             if (CountBlocks() == 1)
             {
                 SceneManager.LoadScene("GameClear");
