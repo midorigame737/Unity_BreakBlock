@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/Scenes/BreakBlock.unity
+    guid: 1927ab83483ea8341a58e3784eb30557
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 7c75c41e82c2c7848af6a135bf88bc8c

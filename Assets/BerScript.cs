@@ -10,8 +10,8 @@ public class BerScript : MonoBehaviour
     private Rigidbody rb;
     void Start()
     {
-        rb=this.GetComponent<Rigidbody>();
-        
+        rb = this.GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
@@ -20,7 +20,11 @@ public class BerScript : MonoBehaviour
         //GetAxisRaw("Horizontal")は左右の入力(A,d,左右矢印)時に-1か1を返す
         //transform.rightはvector3(1,0,0)と々
         //ForceMode.Accelerationは質量を無視して継続的に力を加える
-        rb.AddForce(Vector3.right*Input.GetAxis("Horizontal")*accel,ForceMode.Acceleration);
-        
+        rb.AddForce(Vector3.right * Input.GetAxis("Horizontal") * accel, ForceMode.Acceleration);
+
+    }
+    private void OnCollisionEnter(Collision collection)
+    {
+        ScoreManager.InitBonus();
     }
 }
