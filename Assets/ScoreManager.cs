@@ -15,6 +15,10 @@ public static class ScoreManager
     {
         return score;
     }
+    public  static void Init_Score()
+    {
+        score = 0;
+    }
     public static void AddScore(int BlockScore)
     {
         score += (int)(BlockScore*bonus);
