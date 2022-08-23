@@ -19,7 +19,7 @@ public class BlockScript : MonoBehaviour
     private int CountBlocks(){
         GameObject[] blocks;
         blocks=GameObject.FindGameObjectsWithTag("Block");
-        Debug.Log(blocks.Length);
+        //Debug.Log(blocks.Length);
         //BlockTxt.text=$"BLOCKS:{blocks.Length}";
         return blocks.Length;
     }

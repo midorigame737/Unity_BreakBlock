@@ -26,8 +26,7 @@ public class BottomWallScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision){
         Destroy(collision.gameObject);
         //ballに設定したオブジェクト生成
-        
-        
+        ScoreManager.InitBonus();
         if(lifeManager.life>0){
             Instantiate(ball);
             lifeManager.life--;
