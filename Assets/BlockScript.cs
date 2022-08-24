@@ -3,18 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+[RequireComponent(typeof(AudioSource))]
 public class BlockScript : MonoBehaviour
 {
     [SerializeField]
     private int hp;
     [SerializeField]
     private int score;
+    [SerializeField]
+    private GameObject ball;
+    [SerializeField]
+    private AudioClip[] clips;
+    private AudioSource musicsource;
+
     private GameObject blockText;
     private GameObject scoreText;
+    private GameObject comboText;
     // Start is called before the first frame update
     private void Start(){
         blockText=GameObject.Find("BlocksTxt");
         scoreText = GameObject.Find("ScoreTxt");
+        comboText = GameObject.Find("ComboTxt");
+        musicsource = GetComponents<AudioSource>()[0];
     }
     private int CountBlocks(){
         GameObject[] blocks;
@@ -27,12 +37,17 @@ public class BlockScript : MonoBehaviour
         hp--;
         if (hp == 0)
         {
-            Destroy(this.gameObject);
-            //‚È‚ñ‚©Destroy‚Ìƒ^ƒCƒ~ƒ“ƒO‚ª‚¤‚Ü‚­‡‚í‚È‚¢‚Ì‚ÅDestroy‚ª‹N‚«‚½‚Æ‚«‚É‚¾‚¯ƒJƒEƒ“ƒg‚·‚é
-            int blockcnt = CountBlocks();
-            Debug.Log(CountBlocks());
+            int combo = ScoreManager.GetBonus();
             ScoreManager.AddScore(score);
             scoreText.GetComponent<TextMeshProUGUI>().text = $"SOCRE:{ScoreManager.GetScore()}";
+
+            comboText.GetComponent<TextMeshProUGUI>().text = $"COMBO:{combo}";
+            
+            Destroy(this.gameObject);
+            //ï¿½È‚ï¿½Destroyï¿½Ìƒ^ï¿½Cï¿½~ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½Ì‚ï¿½Destroyï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½Jï¿½Eï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½
+            int blockcnt = CountBlocks();
+            Debug.Log(CountBlocks());
+            
             blockText.GetComponent<TextMeshProUGUI>().text = $"BLOCKS:{CountBlocks()-1}";
             if (CountBlocks() == 1)
             {
