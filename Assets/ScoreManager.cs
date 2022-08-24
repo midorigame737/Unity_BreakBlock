@@ -5,10 +5,12 @@ using UnityEngine;
 public static class ScoreManager 
 {
     private static int score;
+    private static int combo;
     private static float bonus;
-    static ScoreManager()//‰½‚©’m‚ç‚ñ‚¯‚ÇstartŒÄ‚ñ‚Å‚­‚ê‚È‚¢‚©‚ç•’Ê‚ÉƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Å‰Šú‰»‚·‚é
+    static ScoreManager()//ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½ï¿½ñ‚¯‚ï¿½startï¿½Ä‚ï¿½Å‚ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ç•ï¿½Ê‚ÉƒRï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½Nï¿½^ï¿½Åï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     {
         score = 0;
+        combo = 0;
         bonus = 1.0f;
     }
     public static int GetScore()
@@ -18,15 +20,22 @@ public static class ScoreManager
     public  static void Init_Score()
     {
         score = 0;
+        combo = 0;
     }
+    public static int GetBonus()
+    {
+        return combo;
+    } 
     public static void AddScore(int BlockScore)
     {
         score += (int)(BlockScore*bonus);
-        bonus += 0.1f;
+        bonus += 0.2f;
+        combo++;
         Debug.Log($"bonus:{bonus}");
     }
     public static void InitBonus()
     {
+        combo = 0;
         bonus = 1.0f;
     }
     // Start is called before the first frame update
